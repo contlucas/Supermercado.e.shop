@@ -1,0 +1,71 @@
+﻿@model Supermercado.E.Shop.Context.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/site.css" rel="stylesheet" />
+    <title>Login to Supermercado e-shop</title>
+</head>
+<body>
+    <div class="hidden-xs col-sm-5 col-md-6 col-lg-7 left-panel-login">
+    </div>
+    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5 right-panel-login">
+        <form method="post" action="/Home/Login">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row" style="padding-bottom:50px;">
+                        <h1 style="color:#286090;">Supermercado e-shop</h1>
+                        @if (ViewBag.ErrorMessage != null)
+                        {
+                            <span style="color:red;">@ViewBag.ErrorMessage</span>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="Type your username or email" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Your password here" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group ">
+                            <span>
+                                <input type="checkbox" name="rememberme" />
+                                Remember me
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group text-right">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+        });
+    </script>
+</body>
+</html>
