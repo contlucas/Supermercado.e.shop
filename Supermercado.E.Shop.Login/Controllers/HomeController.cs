@@ -22,7 +22,7 @@ namespace Supermercado.E.Shop.Login.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string username, string password, bool rememberme)
+        public ActionResult Login(string username, string password)
         {
             if (SecurityManagement.Authenticate(username, password))
             {
