@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Supermercado.E.Shop.Login")]
+[assembly: AssemblyTitle("Supermercado.E.Shop.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Supermercado.E.Shop.Login")]
+[assembly: AssemblyProduct("Supermercado.E.Shop.App")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e12d5581-e9e4-4626-ad12-71be1fa0d037")]
+[assembly: Guid("fb2329de-3571-4997-8810-c317e13c1ae2")]
 
 // Version information for an assembly consists of the following four values:
 //
