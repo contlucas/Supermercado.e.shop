@@ -1,0 +1,58 @@
+﻿@model Supermercado.E.Shop.App.Models.UserModel
+@{
+    Layout = null;
+    ViewBag.Title = "Supermercado e-shop";
+    ViewBag.ReturnUrl = Request["ReturnUrl"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/site.css" rel="stylesheet" />
+    <title>Login to Supermercado e-shop</title>
+</head>
+<body>
+    <div class="hidden-xs col-sm-5 col-md-6 col-lg-7 left-panel-login">
+    </div>
+    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5 right-panel-login">
+        <div class="panel">
+            <div class="panel-body">
+                @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
+                    <div class="row" style="padding-bottom: 50px;">
+                        <h1 style="color:#286090;">@ViewBag.Title</h1>
+                    </div>
+                    <div class="row">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.TextBoxFor(u => u.Username, new { placeholder = Html.DisplayNameFor(u => u.Username), @class = "form-control", maxlength = 10 })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.PasswordFor(u => u.Password, new { placeholder = Html.DisplayNameFor(u => u.Password), @class = "form-control", maxlength = 20 })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            @Html.CheckBoxFor(u => u.RememberMe)
+                            @Html.DisplayNameFor(u => u.RememberMe)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group text-right">
+                            <button class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

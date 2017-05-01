@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Supermercado.E.Shop.Login
+namespace Supermercado.E.Shop.App
 {
     public class RouteConfig
     {
