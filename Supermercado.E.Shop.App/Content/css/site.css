@@ -1,13 +1,13 @@
-﻿body, html {
+﻿.login-body-html {
     height: 100%;
 }
 
-.left-panel-login {
+.login-left-panel {
     height: 100%;
     background-image: url(../img/supermercado.jpg);
     background-size: cover;
 }
 
-.right-panel-login {
+.login-right-panel {
     height: 100%;
 }
