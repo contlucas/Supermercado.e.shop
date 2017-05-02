@@ -10,16 +10,54 @@ namespace Supermercado.E.Shop.Security
     {
         public static bool Authenticate(string username, string password)
         {
-            using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+            try
             {
-                string encryptedPass = EncryptPassword(password, Algorithm.SHA1);
-                User user = db.User.Where(u => u.Username == username
-                    && u.Password == encryptedPass).FirstOrDefault();
+                using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+                {
+                    User user = db.User.Where(u => u.Username == username).FirstOrDefault();
+                    string encryptedPass = EncryptPassword(password, Algorithm.SHA1);
 
-                return (user != null);
+                    if (user != null)
+                    {
+                        //if (user.State != "A")
+                        //{
+                        //    throw new Exception("The user " + username + " does not exist");
+                        //}
+
+                        if (user.Password == encryptedPass)
+                        {
+                            //user.LastLoginDateTime = DateTime.Today;
+                            //user.AttemptsQuantity = 3;
+                            //db.SaveChanges();
+                            return true;
+                        }
+                        else
+                        {
+                            //user.AttemptsQuantity -= 1;
+
+                            //if (user.AttemptsQuantity <= 0)
+                            //{
+                            //    throw new Exception("Account bloqued, the user has passed max attempts.");
+                            //}
+                            //else
+                            //{
+                            //    db.SaveChanges();
+                            return false;
+                            //}
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
-        public static string EncryptPassword(string password, Algorithm algorithm)
+        public static string EncryptPassword(string password, Algorithm algorithm = Algorithm.SHA1)
         {
             switch (algorithm)
             {
@@ -33,7 +71,7 @@ namespace Supermercado.E.Shop.Security
                     }
                 default:
                     {
-                        throw new Exception("this option wasn't implemented");
+                        throw new Exception("this option isn't implemented");
                     }
             }
         }
@@ -43,5 +81,11 @@ namespace Supermercado.E.Shop.Security
     {
         SHA1,
         MD5
+    }
+
+    public enum Roles
+    {
+        Administrator = 1,
+        Guest = 2
     }
 }

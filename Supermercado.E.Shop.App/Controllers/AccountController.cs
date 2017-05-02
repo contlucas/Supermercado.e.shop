@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Supermercado.E.Shop.Security;
+using Supermercado.E.Shop.Context;
 
 namespace Supermercado.E.Shop.App.Controllers
 {
@@ -37,22 +38,64 @@ namespace Supermercado.E.Shop.App.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                if (SecurityManagement.Authenticate(model.Username, model.Password))
+                try
                 {
-                    FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-                    if (this.Url.IsLocalUrl(returnUrl))
+                    if (SecurityManagement.Authenticate(model.Username, model.Password))
                     {
-                        return Redirect(returnUrl);
+                        FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                        if (this.Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        this.ModelState.AddModelError("", "Incorrect user name or password.");
+                        return View(model);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.ModelState.AddModelError("", "Incorrect user name or password.");
+                    this.ModelState.AddModelError("", ex.Message);
                     return View(model);
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Register(UserRegisterModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+                {
+                    Context.User user = new Context.User();
+                    user.IDRol = (int)Security.Roles.Guest;
+                    user.Username = model.Username;
+                    user.Password = SecurityManagement.EncryptPassword(model.Password);
+                    user.Email = model.Email;
+                    user.CreatedDateTime = DateTime.Now;
+                    user.State = "A";
+
+                    db.User.Add(user);
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
                 }
             }
             else

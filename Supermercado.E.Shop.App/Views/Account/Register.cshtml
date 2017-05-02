@@ -1,30 +1,25 @@
-﻿@model Supermercado.E.Shop.App.Models.UserModel
+﻿@model Supermercado.E.Shop.App.Models.UserRegisterModel
+
 @{
     Layout = null;
-    ViewBag.Title = "Supermercado e-shop";
-    ViewBag.ReturnUrl = Request["ReturnUrl"];
 }
 
 <!DOCTYPE html>
 
-<html class="login-body-html">
+<html>
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/site.css" rel="stylesheet" />
-    <title>@ViewBag.Title</title>
+    <title>Register</title>
 </head>
-<body class="login-body-html">
-    <div class="hidden-xs col-sm-5 col-md-6 col-lg-7 login-left-panel">
-    </div>
-    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5 login-right-panel">
+<body>
+    <div class="container">
         <div class="panel">
             <div class="panel-body">
-                @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post))
                 {
-                    <div class="row" style="padding-bottom: 50px;">
-                        <h1 style="color:#286090;">@ViewBag.Title</h1>
-                    </div>
                     <div class="row">
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -36,23 +31,23 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
+                            @Html.TextBoxFor(u => u.Email, new { placeholder = Html.DisplayNameFor(u => u.Email), @class = "form-control", maxlength = 200 })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
                             @Html.PasswordFor(u => u.Password, new { placeholder = Html.DisplayNameFor(u => u.Password), @class = "form-control", maxlength = 20 })
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            @Html.CheckBoxFor(u => u.RememberMe)
-                            @Html.DisplayNameFor(u => u.RememberMe)
+                            @Html.PasswordFor(u => u.ConfirmationPassword, new { placeholder = Html.DisplayNameFor(u => u.ConfirmationPassword), @class = "form-control", maxlength = 20 })
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group text-right">
-                            @Html.ActionLink("Create an account", "Register", "Account")
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group text-right">
-                            <button class="btn btn-primary">Login</button>
+                            @Html.ActionLink("Back", "Login", "Account", null, new { @class = "btn btn-primary", role = "button" })
+                            <button class="btn btn-primary">Confirm</button>
                         </div>
                     </div>
                 }
