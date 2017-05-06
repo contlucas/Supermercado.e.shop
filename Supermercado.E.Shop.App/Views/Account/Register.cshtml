@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    ViewBag.Title = "Register an user";
 }
 
 <!DOCTYPE html>
@@ -12,10 +13,11 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/site.css" rel="stylesheet" />
-    <title>Register</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
     <div class="container">
+        <h3>Account Information:</h3>
         <div class="panel">
             <div class="panel-body">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post))

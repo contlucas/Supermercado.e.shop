@@ -1,0 +1,30 @@
+﻿@model List<Supermercado.E.Shop.Context.Product>
+
+<style>
+    .product-image-left {
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
+
+    .product-image-right {
+        float: right;
+        height: 50px;
+    }
+</style>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div style="float:left; width:150px; height:150px;">
+            <img src="@item.UrlImage" alt="@item.Name" />
+        </div>
+        <div style="float:left;">
+            <ul>
+                <li><span>Name: </span>@item.Name</li>
+                <li><span>Description: </span>@item.Description</li>
+                <li><span>Quantity Available:</span>@item.Quantity</li>
+            </ul>
+        </div>
+    </div>
+}

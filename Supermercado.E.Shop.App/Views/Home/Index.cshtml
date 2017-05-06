@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Supermercado.E.Shop.Context.Product>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,3 +7,4 @@
 <h2>Index</h2>
 <h3>Welcome @User.Identity.Name</h3>
 
+@Html.Partial("~/Views/Products/Index.cshtml", Model)

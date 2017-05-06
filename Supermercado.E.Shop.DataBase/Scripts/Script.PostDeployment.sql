@@ -18,5 +18,9 @@ SET IDENTITY_INSERT [dbo].[Rol] OFF
 GO
 
 INSERT INTO [dbo].[User] ([Username], [Password], [Email], [IDRol]) VALUES
-	('admin', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 'admin@admin.com', 1);
+	('admin', 'D033E22AE348AEB5660FC2140AEC35850C4DA997', 'admin@admin.com', 1)
+GO
+
+INSERT INTO [dbo].[Product] ([Description], [Name], [Quantity], [UrlImage]) VALUES
+	('Cerealitas', 'Cookies', 10, '/Products/Images/cerealitas1.png')
 GO

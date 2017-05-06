@@ -81,25 +81,44 @@ namespace Supermercado.E.Shop.App.Controllers
         [AllowAnonymous]
         public ActionResult Register(UserRegisterModel model)
         {
-            if (this.ModelState.IsValid)
+            try
             {
-                using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+                if (this.ModelState.IsValid)
                 {
-                    Context.User user = new Context.User();
-                    user.IDRol = (int)Security.Roles.Guest;
-                    user.Username = model.Username;
-                    user.Password = SecurityManagement.EncryptPassword(model.Password);
-                    user.Email = model.Email;
-                    user.CreatedDateTime = DateTime.Now;
-                    user.State = "A";
+                    using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+                    {
+                        
+                        var existUser = from u in db.User
+                                        where u.Username.Equals(model.Username, StringComparison.CurrentCultureIgnoreCase) == true
+                                        select u;
 
-                    db.User.Add(user);
-                    db.SaveChanges();
-                    return RedirectToAction("Login");
+                        //The user exists so throws an exception
+                        if (existUser.FirstOrDefault() != null)
+                        {
+                            throw new Exception("The username " + model.Username + " already exists");
+                        }
+
+                        Context.User user = new Context.User();
+                        user.IDRol = (int)Security.Roles.Guest;
+                        user.Username = model.Username;
+                        user.Password = SecurityManagement.EncryptPassword(model.Password);
+                        user.Email = model.Email;
+                        user.CreatedDateTime = DateTime.Now;
+                        user.State = "A";
+
+                        db.User.Add(user);
+                        db.SaveChanges();
+                        return RedirectToAction("Login");
+                    }
+                }
+                else
+                {
+                    return View();
                 }
             }
-            else
+            catch (Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
