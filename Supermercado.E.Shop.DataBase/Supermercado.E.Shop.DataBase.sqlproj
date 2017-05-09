@@ -63,6 +63,7 @@
   <ItemGroup>
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Rol.sql" />
+    <Build Include="Tables\Product.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Supermercado.E.Shop.DataBase.refactorlog" />

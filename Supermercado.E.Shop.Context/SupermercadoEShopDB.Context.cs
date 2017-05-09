@@ -27,5 +27,6 @@ namespace Supermercado.E.Shop.Context
     
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }

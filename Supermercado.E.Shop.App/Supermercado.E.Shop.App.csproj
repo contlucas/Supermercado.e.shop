@@ -48,14 +48,6 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -150,6 +142,7 @@
     <Content Include="Content\img\supermercado.jpg" />
     <Content Include="Global.asax" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Products\Images\cerealitas1.png" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery.min.js" />
@@ -167,6 +160,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +172,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,9 +184,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Supermercado.E.Shop.Context\Supermercado.E.Shop.Context.csproj">
-      <Project>{e146d222-65db-41f0-9fe7-34ae1c60c388}</Project>
-      <Name>Supermercado.E.Shop.Context</Name>
+    <ProjectReference Include="..\Supermercado.E.Shop.Entities\Supermercado.E.Shop.Entities.csproj">
+      <Project>{89cb5b4a-3083-4b65-a3ab-7643caddea55}</Project>
+      <Name>Supermercado.E.Shop.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supermercado.E.Shop.Repository\Supermercado.E.Shop.Repository.csproj">
+      <Project>{598b7635-31b0-4414-944a-a415ea3ee364}</Project>
+      <Name>Supermercado.E.Shop.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Supermercado.E.Shop.Security\Supermercado.E.Shop.Security.csproj">
       <Project>{6a84aebf-3413-4e0f-b854-2ac09bde7529}</Project>
