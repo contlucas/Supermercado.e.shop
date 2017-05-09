@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermercado.E.Shop.Securit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermercado.E.Shop.App", "Supermercado.E.Shop.App\Supermercado.E.Shop.App.csproj", "{FB2329DE-3571-4997-8810-C317E13C1AE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermercado.E.Shop.Repository", "Supermercado.E.Shop.Repository\Supermercado.E.Shop.Repository.csproj", "{598B7635-31B0-4414-944A-A415EA3EE364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermercado.E.Shop.Entities", "Supermercado.E.Shop.Entities\Supermercado.E.Shop.Entities.csproj", "{89CB5B4A-3083-4B65-A3AB-7643CADDEA55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{FB2329DE-3571-4997-8810-C317E13C1AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB2329DE-3571-4997-8810-C317E13C1AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB2329DE-3571-4997-8810-C317E13C1AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{598B7635-31B0-4414-944A-A415EA3EE364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598B7635-31B0-4414-944A-A415EA3EE364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598B7635-31B0-4414-944A-A415EA3EE364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598B7635-31B0-4414-944A-A415EA3EE364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89CB5B4A-3083-4B65-A3AB-7643CADDEA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CB5B4A-3083-4B65-A3AB-7643CADDEA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CB5B4A-3083-4B65-A3AB-7643CADDEA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CB5B4A-3083-4B65-A3AB-7643CADDEA55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

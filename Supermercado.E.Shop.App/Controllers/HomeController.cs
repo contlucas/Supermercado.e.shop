@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Supermercado.E.Shop.Context;
 
 namespace Supermercado.E.Shop.App.Controllers
 {
@@ -13,10 +12,7 @@ namespace Supermercado.E.Shop.App.Controllers
     {
         public ActionResult Index()
         {
-            using (SupermercadoEShopDB db = new SupermercadoEShopDB())
-            {
-                return View(db.Product.ToList());
-            }
+            return View();
         }
 
         public ActionResult Logout()

@@ -3,7 +3,9 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Supermercado.E.Shop.Context;
+using Supermercado.E.Shop.Repository;
+using Supermercado.E.Shop.Entities;
+
 namespace Supermercado.E.Shop.Security
 {
     public static class SecurityManagement
@@ -12,23 +14,23 @@ namespace Supermercado.E.Shop.Security
         {
             try
             {
-                using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+                using (EntityContext<User> db = new EntityContext<User>())
                 {
-                    User user = db.User.Where(u => u.Username == username).FirstOrDefault();
+                    User user = db.SearchFor(u => u.Username == username).FirstOrDefault();
                     string encryptedPass = EncryptPassword(password, Algorithm.SHA1);
 
                     if (user != null)
                     {
-                        //if (user.State != "A")
-                        //{
-                        //    throw new Exception("The user " + username + " does not exist");
-                        //}
+                        if (user.State != "A")
+                        {
+                            throw new Exception("The user " + username + " does not exist");
+                        }
 
                         if (user.Password == encryptedPass)
                         {
-                            //user.LastLoginDateTime = DateTime.Today;
-                            //user.AttemptsQuantity = 3;
-                            //db.SaveChanges();
+                            user.LastLoginDateTime = DateTime.Now;
+                            user.AttemptsQuantity = 3;
+                            db.ConfirmChanges();
                             return true;
                         }
                         else
@@ -65,8 +67,8 @@ namespace Supermercado.E.Shop.Security
                     {
                         SHA1 sha1 = SHA1CryptoServiceProvider.Create();
                         byte[] arrayPass = sha1.ComputeHash(Encoding.UTF8.GetBytes(password));
-                        IEnumerable<string> a3 = arrayPass.Select(x => x.ToString("X2"));
-                        string result = string.Join("", a3);
+                        IEnumerable<string> arrayResult = arrayPass.Select(x => x.ToString("X2"));
+                        string result = string.Join("", arrayResult);
                         return result;
                     }
                 default:

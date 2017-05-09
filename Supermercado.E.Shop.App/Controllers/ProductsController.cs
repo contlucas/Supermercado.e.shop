@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Supermercado.E.Shop.Context;
 
 namespace Supermercado.E.Shop.App.Controllers
 {
@@ -13,11 +12,7 @@ namespace Supermercado.E.Shop.App.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            using (SupermercadoEShopDB db = new SupermercadoEShopDB())
-            {
-                return View(db.Product.ToList());
-            }
-
+            return View();
         }
     }
 }

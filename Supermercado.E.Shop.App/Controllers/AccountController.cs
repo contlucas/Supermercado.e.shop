@@ -1,4 +1,4 @@
-﻿using Supermercado.E.Shop.App.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Supermercado.E.Shop.Security;
-using Supermercado.E.Shop.Context;
+using Supermercado.E.Shop.App.Models;
+using Supermercado.E.Shop.Repository;
+using Supermercado.E.Shop.Entities;
 
 namespace Supermercado.E.Shop.App.Controllers
 {
@@ -43,14 +45,11 @@ namespace Supermercado.E.Shop.App.Controllers
                     if (SecurityManagement.Authenticate(model.Username, model.Password))
                     {
                         FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+
                         if (this.Url.IsLocalUrl(returnUrl))
-                        {
                             return Redirect(returnUrl);
-                        }
                         else
-                        {
                             return RedirectToAction("Index", "Home");
-                        }
                     }
                     else
                     {
@@ -85,20 +84,17 @@ namespace Supermercado.E.Shop.App.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    using (SupermercadoEShopDB db = new SupermercadoEShopDB())
+                    using (EntityContext<User> db = new EntityContext<Entities.User>())
                     {
-                        
-                        var existUser = from u in db.User
-                                        where u.Username.Equals(model.Username, StringComparison.CurrentCultureIgnoreCase) == true
-                                        select u;
+                        var existUser = db.SearchFor(u => u.Username.Equals(model.Username, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-                        //The user exists so throws an exception
-                        if (existUser.FirstOrDefault() != null)
+                        //The user exists then throws an exception
+                        if (existUser != null)
                         {
                             throw new Exception("The username " + model.Username + " already exists");
                         }
 
-                        Context.User user = new Context.User();
+                        User user = new User();
                         user.IDRol = (int)Security.Roles.Guest;
                         user.Username = model.Username;
                         user.Password = SecurityManagement.EncryptPassword(model.Password);
@@ -106,8 +102,8 @@ namespace Supermercado.E.Shop.App.Controllers
                         user.CreatedDateTime = DateTime.Now;
                         user.State = "A";
 
-                        db.User.Add(user);
-                        db.SaveChanges();
+                        db.Insert(user);
+                        db.ConfirmChanges();
                         return RedirectToAction("Login");
                     }
                 }
